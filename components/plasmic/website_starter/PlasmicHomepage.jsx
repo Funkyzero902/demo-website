@@ -14,10 +14,13 @@ import { useRouter } from "next/router";
 import {
   classNames,
   createPlasmicElementProxy,
-  deriveRenderOpts
+  deriveRenderOpts,
+  ensureGlobalVariants,
+  hasVariant
 } from "@plasmicapp/react-web";
 import { useDataEnv } from "@plasmicapp/react-web/lib/host";
 import Button from "../../Button"; // plasmic-import: RYgoN170Te3m/component
+import { useScreenVariants as useScreenVariantsxgW5E661ZS1N } from "./PlasmicGlobalVariant__Screen"; // plasmic-import: XgW5E661zS1n/globalVariant
 import "@plasmicapp/react-web/lib/plasmic.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: pvMi9AtD1mMDsoXiufAciB/projectcss
 import sty from "./PlasmicHomepage.module.css"; // plasmic-import: tkdd3ilg_gqC/css
@@ -57,6 +60,9 @@ function PlasmicHomepage__RenderFunc(props) {
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantsxgW5E661ZS1N()
+  });
   return (
     <React.Fragment>
       <Head></Head>
@@ -139,13 +145,17 @@ function PlasmicHomepage__RenderFunc(props) {
                 {"Click Me"}
               </div>
             }
-            linkTo={"https://www.youtube.com/shorts/Ay8lynMZ4mE"}
+            linkTo={
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? ""
+                : "https://www.youtube.com/shorts/Ay8lynMZ4mE"
+            }
             onClick={async event => {
               const $steps = {};
-              $steps["goToHttpsWwwYoutubeComShortsAy8LynMz4ME"] = true
+              $steps["goToHttpsWwwYoutubeComWatchVDQw4W9WgXcQ"] = true
                 ? (() => {
                     const actionArgs = {
-                      destination: "https://www.youtube.com/shorts/Ay8lynMZ4mE"
+                      destination: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                     };
                     return (({ destination }) => {
                       if (
@@ -162,14 +172,14 @@ function PlasmicHomepage__RenderFunc(props) {
                   })()
                 : undefined;
               if (
-                $steps["goToHttpsWwwYoutubeComShortsAy8LynMz4ME"] != null &&
-                typeof $steps["goToHttpsWwwYoutubeComShortsAy8LynMz4ME"] ===
+                $steps["goToHttpsWwwYoutubeComWatchVDQw4W9WgXcQ"] != null &&
+                typeof $steps["goToHttpsWwwYoutubeComWatchVDQw4W9WgXcQ"] ===
                   "object" &&
-                typeof $steps["goToHttpsWwwYoutubeComShortsAy8LynMz4ME"]
+                typeof $steps["goToHttpsWwwYoutubeComWatchVDQw4W9WgXcQ"]
                   .then === "function"
               ) {
-                $steps["goToHttpsWwwYoutubeComShortsAy8LynMz4ME"] =
-                  await $steps["goToHttpsWwwYoutubeComShortsAy8LynMz4ME"];
+                $steps["goToHttpsWwwYoutubeComWatchVDQw4W9WgXcQ"] =
+                  await $steps["goToHttpsWwwYoutubeComWatchVDQw4W9WgXcQ"];
               }
               $steps["updateStateVariable"] = true
                 ? (() => {
@@ -193,6 +203,11 @@ function PlasmicHomepage__RenderFunc(props) {
                 ];
               }
             }}
+            openLinkInNewTab={
+              hasVariant(globalVariants, "screen", "mobileOnly")
+                ? true
+                : undefined
+            }
           />
         </section>
       </div>

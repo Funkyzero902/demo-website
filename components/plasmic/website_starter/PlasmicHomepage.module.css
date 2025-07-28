@@ -67,6 +67,7 @@
   .h1 {
     margin-top: 0px;
     padding-top: 0px;
+    height: 143px;
   }
 }
 .text__bYhEx {
@@ -84,6 +85,12 @@
   max-width: 100%;
   width: 241px;
   height: 70px;
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .button:global(.__wab_instance):global(.__wab_instance) {
+    margin-top: 0px;
+    height: 73px;
+  }
 }
 .svg___6D1Af {
   position: relative;
